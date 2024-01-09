@@ -113,7 +113,21 @@ docker run -p 5173:5173 -v "$(pwd):/app/" -v /app/node_modules react-docker-setu
 ```
 
 ---
-## Now use docker init that made developer life easy 
+
+## Now use docker init that made developer life easy
+
 ```
 docker init
+```
+
+**Run docker compose**
+
+```
+docker compose up
+```
+
+**Auto start dev Docker watch**
+
+```
+docker compose watch
 ```
