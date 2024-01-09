@@ -111,3 +111,9 @@ docker run -p 5173:5173 react-docker-setup
 ```
 docker run -p 5173:5173 -v "$(pwd):/app/" -v /app/node_modules react-docker-setup
 ```
+
+---
+## Now use docker init that made developer life easy 
+```
+docker init
+```
