@@ -19,7 +19,7 @@ services:
           target: /app
           action: sync
     environment:
-      - mongodb+srv://university-admin:As9YqEiswwEnn3Bt@cluster0.pe8bb.mongodb.net/?retryWrites=true&w=majority
+      # - database urr
 
         # define the local db service
     # db:
