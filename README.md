@@ -131,3 +131,87 @@ docker compose up
 ```
 docker compose watch
 ```
+
+---
+
+#### Steps of dockerized Nextjs app
+
+-->Make an next app then
+
+**Install docker into the project**
+
+```
+docker init
+```
+
+**Make Docker File**
+
+```
+FROM node
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3001
+
+CMD npm run dev
+```
+
+**Make docker compose file**
+
+```
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    develop:
+      watch:
+        - path: ./package.json
+          action: rebuild
+        - path: ./next.config.js
+          action: rebuild
+        - path: ./package-lock.json
+          action: rebuild
+        - path: .
+          target: /app
+          action: sync
+    environment:
+      - mongodb+srv://university-admin:<password>@cluster0.pe8bb.mongodb.net/?retryWrites=true&w=majority
+
+        # define the local db service
+    # db:
+    #   image: mongo:latest
+    #   ports:
+    #     - 27017:27017
+    #   volumes:
+    #     - tasked:/data/db
+
+volumes:
+  tasked:
+
+```
+
+> [!CAUTION]
+> Next js start default in 3000 port but i change it so that i change in package.json add --port 3001 in the start and dev command
+
+**Now give build command**
+
+```
+docker compose up
+```
+
+**Start Sync**
+
+```
+docker compose watch
+```
